@@ -20,3 +20,15 @@ if [[ -f .zshrc ]]; then
 	fi
 	ln -s $(pwd)/.zshrc ~/.zshrc
 fi
+
+# set up for python-pip's source
+if [[ -d "~/.pip/" ]]; then
+	mkdir "~/.pip/"
+fi
+
+if [[ -f "./python/.pip/pip.conf" ]]; then
+	if [[ -f "~/.pip/pip.conf" ]]; then
+		rm -f "~/.pip/pip.conf"
+	fi
+	ln -s "$(pwd)/python/.pip/pip.conf"
+fi
