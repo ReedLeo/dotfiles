@@ -7,18 +7,18 @@ if [[ -f .aliases ]]; then
 	ln -s $(pwd)/.aliases ~/.aliases
 fi
 
-if [[ -f .tmux.conf ]]; then
+if [[ -f ./tmux/.tmux.conf ]]; then
 	if [[ -f ~/.tmux.conf ]]; then
 		rm -rf ~/.tmux.conf
 	fi
-	ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+	ln -s $(pwd)/tmux/.tmux.conf ~/.tmux.conf
 fi
 
-if [[ -f .zshrc ]]; then
+if [[ -f ./zsh/.zshrc ]]; then
 	if [[ -f ~/.zshrc ]]; then
 		rm -rf ~/.zshrc
 	fi
-	ln -s $(pwd)/.zshrc ~/.zshrc
+	ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 fi
 
 # set up for python-pip's source
