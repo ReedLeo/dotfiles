@@ -111,3 +111,5 @@ if [[ "ubuntu" == "$osname" && -f "$path_to_autojump" ]]
 then	
 	source "$path_to_autojump" 
 fi	
+
+export PATH=$PATH:~/.local/bin/
