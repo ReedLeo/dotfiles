@@ -107,7 +107,7 @@ fi
 # enable autojump for Ubuntu
 osname=$(cat /etc/*-release | awk '/^ID=.*/ {print substr($0, 4)}')
 path_to_autojump='/usr/share/autojump/autojump.sh'
-if [[ "ubuntu" == "$osname" && -f "$path_to_autojump" ]]
+if [[ ( "ubuntu" == "$osname" || "kali" == "$osname" ) && -f "$path_to_autojump" ]]
 then	
 	source "$path_to_autojump" 
 fi	
