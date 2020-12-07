@@ -32,3 +32,11 @@ if [[ -f ./python/.pip/pip.conf ]]; then
 	fi
 	ln -s $(pwd)/python/.pip/pip.conf ~/.pip/pip.conf
 fi
+
+if [[ -f ./vim/.vimrc ]]; then
+	if [[ -f ~/.vimrc ]]; then
+		rm -f ~/.vimrc
+	fi
+	ln -s $(pwd)/vim/.vimrc ~/.vimrc
+fi
+
