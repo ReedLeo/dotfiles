@@ -82,5 +82,10 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " leo's settings
 set ts=4
 set shiftwidth=4
+set softtabstop=4
+set expandtab
 set autoindent
 set cursorline
+set cursorcolumn
+highlight CursorLine ctermbg=gray
+highlight CursorColumn ctermbg=brown ctermfg=lightgreen
