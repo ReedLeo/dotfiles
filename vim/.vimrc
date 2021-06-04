@@ -87,5 +87,5 @@ set expandtab
 set autoindent
 set cursorline
 set cursorcolumn
-highlight CursorLine ctermbg=gray
+highlight CursorLine ctermbg=none
 highlight CursorColumn ctermbg=brown ctermfg=lightgreen
