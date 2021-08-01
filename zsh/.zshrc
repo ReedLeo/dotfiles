@@ -71,7 +71,9 @@ ZSH_THEME="ys"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions tmux)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions tmux)
+# zsh-syntax-highlighting: 
+#   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh}/plugins/zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 
