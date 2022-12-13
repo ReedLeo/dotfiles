@@ -1,0 +1,129 @@
+{
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"pwntools header": {
+		"prefix": "pwn",
+		"body": [
+			"from pwn import *",
+			"context(os=${1:\"linux\"}, arch=${2:\"i386\"})",
+		],
+		"description": "import pwn"
+	},
+
+	"pwn log level": {
+		"prefix": "log_level",
+		"body": [
+			"context.log_level=${1:\"debug\"}",
+		],
+		"description": "set pwn context.log_level"
+	},
+
+	"pwn info log": {
+		"prefix": "pinfo",
+		"body": [
+			"log.info($1)",
+		],
+		"description": "pwn log"
+	},
+
+	"pwn debug log": {
+		"prefix": "pdbg",
+		"body": [
+			"log.debug($1)",
+		],
+		"description": "pwn debug log"
+	},
+
+	"pwn success log" : {
+		"prefix": "psuc",
+		"body": [
+			"log.success($1)"
+		],
+		"description": "pwn success log"
+	},
+
+	"pwn io abbreviations" : {
+		"prefix": "abio",
+		"body": [
+			"s,sl,sa,sla = $1.send, $1.sendline, $1.sendafter, $1.sendlineafter",
+			"r, ra, rl = $1.recv, $1.recvall, $1.recvline"
+		],
+		"description": "pwn success log"
+	},
+
+	"pwn io send" : {
+		"prefix": "s",
+		"body": [
+			"send(${1:payload})",
+		],
+		"description": "pwn io send"
+	},
+
+	"pwn io send after" : {
+		"prefix": "sa",
+		"body": [
+			"sendafter(${1:payload})",
+		],
+		"description": "pwn io send"
+	},
+
+	"pwn io send a line" : {
+		"prefix": "sl",
+		"body": [
+			"sendline(${1:payload})",
+		],
+		"description": "pwn io sendline"
+	},
+
+	"pwn io send line after" : {
+		"prefix": "sla",
+		"body": [
+			"sendlineafter(${1:payload})",
+		],
+		"description": "pwn io sendlineafter"
+	},
+
+	"pwn io receive" : {
+		"prefix": "r",
+		"body": [
+			"recv",
+		],
+		"description": "pwn io recv"
+	},
+
+	"pwn io receive until" : {
+		"prefix": "ru",
+		"body": [
+			"recvuntil($1, drop=${2:False})",
+		],
+		"description": "pwn io recvuntil"
+	},
+
+	"pwn io receive a line" : {
+		"prefix": "rl",
+		"body": [
+			"recvline()",
+		],
+		"description": "pwn io recvline"
+	},
+
+	"pwn io receive all" : {
+		"prefix": "ra",
+		"body": [
+			"recvall()",
+		],
+		"description": "pwn io recvall"
+	},
+}
