@@ -5,3 +5,9 @@ alias gad="git add"
 alias gst="git status"
 alias gct="git commit -m"
 alias gdf="git diff"
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
