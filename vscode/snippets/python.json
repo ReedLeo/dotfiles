@@ -12,12 +12,19 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"main entry": {
+		"prefix": "main",
+		"body": [
+			"if ('__main__' == __name__):",
+		],
+		"description": "import pwn"
+	},
 
 	"pwntools header": {
 		"prefix": "pwn",
 		"body": [
 			"from pwn import *",
-			"context(os=${1:\"linux\"}, arch=${2:\"i386\"})",
+			"context(os=${1:\"linux\"}, arch=${2:\"i386\"}, kernel=${3:\"amd64\"})",
 		],
 		"description": "import pwn"
 	},
@@ -123,6 +130,22 @@
 		"prefix": "ra",
 		"body": [
 			"recvall()",
+		],
+		"description": "pwn io recvall"
+	},
+
+	"pwn exec file name" : {
+		"prefix": "fname",
+		"body": [
+			"g_fname = args.FNAME if args.FNAME else './syscall_interface'",
+		],
+		"description": "pwn io recvall"
+	},
+
+	"pwn libc file name" : {
+		"prefix": "libcname",
+		"body": [
+			"g_libcname = args.LIBC if args.LIBC else '/lib/x86_64-linux-gnu/libc.so.6'",
 		],
 		"description": "pwn io recvall"
 	},
