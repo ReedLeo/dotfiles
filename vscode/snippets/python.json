@@ -12,6 +12,17 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"create io": {
+		"prefix": "gio",
+		"body": [
+			"if args.REMOTE:",
+			"\thost, port = args.REMOTE.split(':')",
+			"\tg_io = remote(host, int(port)),"
+			"else:", 
+			"\tg_io = process(${1:f_name})"
+		]
+	},
+	
 	"main entry": {
 		"prefix": "main",
 		"body": [
