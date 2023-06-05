@@ -17,7 +17,7 @@
 		"body": [
 			"if args.REMOTE:",
 			"\thost, port = args.REMOTE.split(':')",
-			"\tio = remote(host, int(port)),"
+			"\tio = remote(host, int(port))",
 			"else:", 
 			"\tio = process(${1:f_name})"
 		]
