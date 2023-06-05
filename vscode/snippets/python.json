@@ -17,16 +17,20 @@
 		"body": [
 			"if args.REMOTE:",
 			"\thost, port = args.REMOTE.split(':')",
-			"\tg_io = remote(host, int(port)),"
+			"\tio = remote(host, int(port)),"
 			"else:", 
-			"\tg_io = process(${1:f_name})"
+			"\tio = process(${1:f_name})"
 		]
 	},
 	
 	"main entry": {
 		"prefix": "main",
 		"body": [
-			"if ('__main__' == __name__):",
+			"if '__main__' == __name__:",
+			"\tif args.DEBUG:",
+			"\t\tcontext.log_level='debug'",
+			"\texp()",
+			"\tio.iteractive()"
 		],
 		"description": "import pwn"
 	},
@@ -35,7 +39,35 @@
 		"prefix": "pwn",
 		"body": [
 			"from pwn import *",
-			"context(os=${1:\"linux\"}, arch=${2:\"i386\"}, kernel=${3:\"amd64\"})",
+			"context(os=${1:'linux'}, arch=${2:'i386'}, kernel=${3:'amd64'})",
+			"",
+			"fname = args.FNAME if args.FNAME else ${4:'./pwn'}",
+			"libname = args.LIB if args.LIB else ${5:'./libc.so'}",
+			"elf, libc = ELF(fname), ELF(libname)",
+			"context.binary = elf",
+			"",
+			"if args.REMOTE:",
+			"\thost, port = args.REMOTE.split(':')",
+			"\tio = remote(host, int(port)),"
+			"else:", 
+			"\tio = process(fname)",
+			"",
+			"def bpt():",
+			"\tif not args.REMOTE:",
+			"\t\tlog.info('pid: %d' % io.proc.pid)",
+			"\tpause()",
+			"",
+			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
+			"r, ra, rl = io.recv, io.recvall, io.recvline",
+			"",
+			"def exp():",
+			"\tpass", 
+			"",
+			"if '__main__' == __name__:",
+			"\tif args.DEBUG:",
+			"\t\tcontext.log_level='debug'",
+			"\texp()",
+			"\tio.iteractive()"
 		],
 		"description": "import pwn"
 	},
@@ -43,7 +75,7 @@
 	"pwn log level": {
 		"prefix": "log_level",
 		"body": [
-			"context.log_level=${1:\"debug\"}",
+			"context.log_level=${1:'debug'}",
 		],
 		"description": "set pwn context.log_level"
 	},
@@ -75,8 +107,8 @@
 	"pwn io abbreviations" : {
 		"prefix": "abio",
 		"body": [
-			"s,sl,sa,sla = $1.send, $1.sendline, $1.sendafter, $1.sendlineafter",
-			"r, ra, rl = $1.recv, $1.recvall, $1.recvline"
+			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
+			"r, ra, rl = io.recv, io.recvall, io.recvline"
 		],
 		"description": "pwn success log"
 	},
@@ -148,7 +180,7 @@
 	"pwn exec file name" : {
 		"prefix": "fname",
 		"body": [
-			"g_fname = args.FNAME if args.FNAME else './syscall_interface'",
+			"fname = args.FNAME if args.FNAME else './syscall_interface'",
 		],
 		"description": "pwn io recvall"
 	},
@@ -156,7 +188,7 @@
 	"pwn libc file name" : {
 		"prefix": "libcname",
 		"body": [
-			"g_libcname = args.LIBC if args.LIBC else '/lib/x86_64-linux-gnu/libc.so.6'",
+			"libcname = args.LIBC if args.LIBC else '/lib/x86_64-linux-gnu/libc.so.6'",
 		],
 		"description": "pwn io recvall"
 	},
