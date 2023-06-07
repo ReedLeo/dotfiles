@@ -42,7 +42,7 @@
 			"context(os=${1:'linux'}, arch=${2:'i386'}, kernel=${3:'amd64'})",
 			"",
 			"fname = args.FNAME if args.FNAME else ${4:'./pwn'}",
-			"libname = args.LIB if args.LIB else ${5:'./libc.so'}",
+			"libname = args.LIB if args.LIB else ${5:'/lib/x86_64-linux-gnu/libc.so.6'}",
 			"exe, libc = ELF(fname), ELF(libname)",
 			"context.binary = exe",
 			"",
@@ -82,7 +82,7 @@
 			"\tif args.DEBUG:",
 			"\t\tcontext.log_level='debug'",
 			"\texp()",
-			"\tio.iteractive()"
+			"\tio.interactive()"
 		],
 		"description": "import pwn"
 	},
