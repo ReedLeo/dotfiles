@@ -123,7 +123,7 @@
 		"prefix": "abio",
 		"body": [
 			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
-			"r, ra, rl = io.recv, io.recvall, io.recvline"
+			"r, ra, rl, ru = io.recv, io.recvall, io.recvline, io.recvuntil"
 		],
 		"description": "pwn success log"
 	},
