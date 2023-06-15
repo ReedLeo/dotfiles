@@ -54,6 +54,8 @@
 			"\tio = remote(host, int(port))",
 			"elif args.LDSO:",
 			"\tio = process([ldname, fname], env={'LD_PRELOAD': libname})",
+			"elif args.LIB:",
+			"\tio = process(fname, env={'LD_PRELOAD': libname})",
 			"else:",
 			"\tio = process(fname)",
 			"",
