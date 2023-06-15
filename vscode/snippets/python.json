@@ -59,7 +59,7 @@
 			"",
 			"def bpt():",
 			"\tif not args.REMOTE:",
-			"\t\tlog.info('pid: %d' % io.proc.pid)",
+			"\t\tgdb.attach(io)",
 			"\tpause()",
 			"",
 			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
