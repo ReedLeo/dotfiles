@@ -164,7 +164,7 @@
 			"def opt(idx):",
 			"\tsa(b'', str(idx).encode())",
 			"",
-			"def create(sz, content):",
+			"def add(sz, content):",
 			"\topt()",
 			"\tsa(b'', str(sz).encode())",
 			"\tsa(b'', content)",
@@ -229,7 +229,7 @@
 	"pwn io abbreviations" : {
 		"prefix": "abio",
 		"body": [
-			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
+			"s, sl, sa, sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
 			"r, ra, rl, ru = io.recv, io.recvall, io.recvline, io.recvuntil"
 		],
 		"description": "pwn success log"
