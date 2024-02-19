@@ -158,7 +158,7 @@
 			"\t\tlog.info('PID: %d' % io.proc.pid)",
 			"\tpause()",
 			"",
-			"s,sl,sa,sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
+			"s, sl, sa, sla = io.send, io.sendline, io.sendafter, io.sendlineafter",
 			"r, ra, rl, ru = io.recv, io.recvall, io.recvline, io.recvuntil",
 			"",
 			"def opt(idx):",
