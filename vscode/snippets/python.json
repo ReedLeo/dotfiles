@@ -144,7 +144,7 @@
 			"context.terminal = ['tmux', 'splitw', '-h']",
 			"fname = args.FNAME if args.FNAME else ${4:'./pwn'}",
 			"libname = args.LIB if args.LIB else ${5:'/lib/x86_64-linux-gnu/libc.so.6'}",
-			"ldname = args.LDSO if args.LDSO else '/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2'",
+			"ldname = args.LDSO if args.LDSO else ${6:'/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2'}",
 			"exe = ELF(fname)",
 			"libc = ELF(libname)",
 			"ldso = ELF(ldname)",
