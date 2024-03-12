@@ -68,7 +68,7 @@
 			"#   _wide_data->_IO_buf_base = 0",
 			"#   fp->_vtable_offset = 0",
 			"fake_FILE = flat([",
-			"    b'  sh'.ljust(8, b'\0'), # _flags &= ~(2|8|0x800), u64(b'  sh')==0x68732020",
+			"    b'  sh'.ljust(8, b'\\0'), # _flags &= ~(2|8|0x800), u64(b'  sh')==0x68732020",
 			"    0, 0, 0, # _IO_read_ptr, _IO_read_end, _IO_read_base",
 			"    0, # _IO_write_base",
 			"    1, # RDX = _IO_write_ptr,",
