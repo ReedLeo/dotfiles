@@ -361,7 +361,7 @@
 	"pwn info log": {
 		"prefix": "pinfo",
 		"body": [
-			"log.info($1)",
+			"log.info(f'===========> $1')",
 		],
 		"description": "pwn log"
 	},
@@ -369,7 +369,7 @@
 	"pwn debug log": {
 		"prefix": "pdbg",
 		"body": [
-			"log.debug($1)",
+			"log.debug(f'===========> $1')",
 		],
 		"description": "pwn debug log"
 	},
@@ -377,7 +377,7 @@
 	"pwn success log" : {
 		"prefix": "psuc",
 		"body": [
-			"log.success($1)"
+			"log.success(f'===========> $1')"
 		],
 		"description": "pwn success log"
 	},
