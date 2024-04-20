@@ -12,6 +12,30 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+
+	"z3-solver": {
+		"prefix": "z3sol",
+		"body": [
+			"from z3 import *",
+			"# 创建一个32个整数的列表",
+			"flag = [BitVec('flag[%d]' % i, 32) for i in range(32)]",
+			"# 创建一个求解器",
+			"s = Solver()",
+			"# 添加约束条件",
+			"s.add(flag[23] * flag[23] == 0)",
+			"[s.add(flag[i] < 0x7f, flag[i] >= 20) for i in range(32)]",
+			"# 求解",
+			"if s.check() == sat:",
+			"\tm = s.model()",
+			"\tprint(m)",
+			"\tflag_values = [m.evaluate(flag[i]).as_long() for i in range(32)]",
+			"\tprint('flag:', ''.join(map(chr,flag_values)))",
+			"else:",
+			"\tprint('无解')"
+		],
+		"description": "Log output to console"
+	},
+
 	"mips-rop": {
 		"prefix": "mipsrop",
 		"body": [
