@@ -191,6 +191,19 @@
 	"build ucontext_t obj": {
 		"prefix": "ucontext",
 		"body": [
+			"# 54f5d:       48 8b a2 a0 00 00 00    mov    0xa0(%rdx),%rsp",
+			"# 54f64:       48 8b 9a 80 00 00 00    mov    0x80(%rdx),%rbx",
+			"# 54f6b:       48 8b 6a 78             mov    0x78(%rdx),%rbp",
+			"# 54f6f:       4c 8b 62 48             mov    0x48(%rdx),%r12",
+			"# 54f73:       4c 8b 6a 50             mov    0x50(%rdx),%r13",
+			"# 54f77:       4c 8b 72 58             mov    0x58(%rdx),%r14",
+			"# 54f7b:       4c 8b 7a 60             mov    0x60(%rdx),%r15",
+			"setcontext_61_addr = libc.sym['setcontext'] + 61",
+
+			"# libc >= 2.29 rdi -> rdx",
+			"# 0x0000000000151990 : mov rdx, qword ptr [rdi + 8] ; mov qword ptr [rsp], rax ; call qword ptr [rdx + 0x20]",
+			"pat = b'H\\x8bW\\x08H\\x89\\x04$\\xffR '",
+			"rdi2rdx_call = next(libc.search(pat))   # search by pattern instead of using a explicit offset",
 			"ucontext = flat({",
 			"\t0x28: 0,          # +0x28: r8",
 			"\t0x30: 0,          # +0x30: r9",
