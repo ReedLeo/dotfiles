@@ -39,6 +39,7 @@
 	"mips-rop": {
 		"prefix": "mipsrop",
 		"body": [
+			"#!/usr/bin/env python3",
 			"from pwn import *",
 			"context.terminal = ['tmux', 'splitw', '-h']",
 			"fname = args.FNAME if args.FNAME else './mips'",
