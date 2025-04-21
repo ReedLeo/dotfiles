@@ -330,6 +330,7 @@
 	"pwntools header": {
 		"prefix": "pwn",
 		"body": [
+			"#!/usr/bin/env python3",
 			"from pwn import *",
 			"context(os=${1:'linux'}, arch=${2:'i386'}, kernel=${3:'amd64'})",
 			"context.terminal = ['tmux', 'splitw', '-h']",
